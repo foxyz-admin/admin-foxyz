@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>FOXYZ - Gerador de Keys</title>
+    <style>
+        :root { --red: #ff0000; --bg: #000; }
+        body { background: var(--bg); color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .box { width: 320px; padding: 30px; background: #0a0a0a; border: 2px solid var(--red); border-radius: 20px; text-align: center; box-shadow: 0 0 20px var(--red); }
+        h2 { color: var(--red); margin-bottom: 20px; text-transform: uppercase; }
+        #key-display { background: #000; padding: 15px; border: 1px dashed var(--red); color: #fff; font-size: 20px; font-weight: bold; margin-bottom: 20px; cursor: pointer; }
+        .btn { width: 100%; padding: 12px; background: var(--red); color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        .status { font-size: 11px; color: #00ff00; margin-top: 10px; display: none; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Admin Gen</h2>
+        <div id="key-display" onclick="copy()">CLIQUE PARA GERAR</div>
+        <p id="status">KEY COPIADA!</p>
+        <button class="btn" onclick="gen()">GERAR NOVA KEY</button>
+    </div>
+
+    <script>
+        function gen() {
+            const k = 'FOXYZ-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+            document.getElementById('key-display').innerText = k;
+            document.getElementById('status').style.display = 'none';
+        }
+        function copy() {
+            const t = document.getElementById('key-display').innerText;
+            if(t === "CLIQUE PARA GERAR") return;
+            navigator.clipboard.writeText(t);
+            document.getElementById('status').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
